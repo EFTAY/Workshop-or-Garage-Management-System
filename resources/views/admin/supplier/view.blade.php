@@ -60,19 +60,24 @@
                                     @foreach ($suppliers as $item)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $name }}</td>
-                                            <td>{{ $mobile_no }}</td>
-                                            <td>{{ $email }}</td>
-                                            <td>{{ $address }}</td>
-                                            <td>{{ $status }}</td>
-                                            <td>{{ $status }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->mobile_no }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->address }}</td>
+                                            <td>{{ $item->status }}</td>
+                                            <td>{{ $item->created_at }}</td>
+                                            <td>{{ $item->updated_at }}</td>
                                             <td>
-                                                <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning sm">
-                                                    Edit <i class="fas fa-edit"></i> </a>
+                                                <div class="col-sm-3"><a href="{{ route('supplier.edit', $item->id) }}"
+                                                        class="btn sm">
+                                                        <i class="fas fa-edit" style="color: rgb(206, 193, 5)"></i> </a>
+                                                </div>
+                                                <div class="col-sm-3"><a href="{{ route('supplier.delete', $item->id) }}"
+                                                        id="delete" class="btn sm">
+                                                        <i class="fas fa-trash-alt" style="color: red"></i></a></div>
+                                                <div class="col-sm-3"></div>
 
-                                                <a href="{{ route('blog.delete', $item->id) }}" id="delete"
-                                                    class="btn btn-danger sm"> Delete
-                                                    <i class="fas fa-trash-alt"></i></a>
+
                                             </td>
                                         </tr>
                                     @endforeach

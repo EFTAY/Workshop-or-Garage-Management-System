@@ -53,6 +53,9 @@ Route::middleware(['auth'])->group(function () {
         Route::controller(SupplierController::class)->group(function () {
             Route::get('/all', 'supplierView')->name('view');
             Route::get('/add', 'supplierAdd')->name('add');
+            Route::post('/store', 'supplierStore')->name('store');
+            Route::get('/edit', 'supplierEdit')->name('edit');
+            Route::get('/delete/{id}', 'supplierDelete')->name('delete');
         });
     });
 });

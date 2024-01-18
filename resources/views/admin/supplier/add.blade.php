@@ -1,14 +1,5 @@
 @extends('admin.admin_master')
 @section('admin_content')
-    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-    <style type="text/css">
-        .bootstrap-tagsinput .tag {
-            margin-right: 2px;
-            color: #b70000;
-            font-weight: 700px;
-        }
-    </style>
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
@@ -18,60 +9,57 @@
 
                             <h4 class="text-center">Add Supplier Page</h4>
                             <hr>
-                            <form method="post" action="#" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('supplier.store') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row mb-3">
-                                    <label for="" class="col-sm-2 col-form-label">Blog Data All </label>
+                                    {{-- <label for="" class="col-sm-2 col-form-label">Blog Data All </label> --}}
                                     <div class="col-sm-10">
-
+                                        <h4 class="card-title">Blog Data All</h4>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="" class="col-sm-2 col-form-label">Blog Title</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="text" placeholder="" name="blog_title"
+                                    <label for="" class="col-sm-2 col-form-label">Supplier Name</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" placeholder="" name="name"
                                             value="" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="" class="col-sm-2 col-form-label">Blog Tag</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control select2-selection__rendered" type="text"
-                                            name="blog_tag" value="home" data-role="tagsinput">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="" class="col-sm-2 col-form-label">Blog
-                                        Description</label>
-
-                                    <div class="col-sm-10">
-                                        <textarea id="elm1" name="blog_description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="" class="col-sm-2 col-form-label">Blog Image</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="blog_image" id="images"
+                                    <label for="" class="col-sm-2 col-form-label">Supplier Mobile</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" placeholder="" name="mobile_no"
                                             value="" required>
                                     </div>
                                 </div>
-                                {{-- end row --}}
                                 <div class="row mb-3">
-                                    <label for="" class="col-sm-2 col-form-label"> </label>
-
-                                    <div class="col-sm-10">
-                                        <img id="showImage" name="image" class="rounded avatar-lg" alt="200x200"
-                                            src="{{ asset('upload/no_image.jpg') }}" data-holder-rendered="true">
+                                    <label for="" class="col-sm-2 col-form-label">Supplier Email</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" placeholder="" name="email"
+                                            value="" required>
                                     </div>
-                                </div>{{-- end row --}}
-
-                                <div class="row mb-3">
-                                    <button class="btn btn-info" type="submit">Insert
-                                    </button>
                                 </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label">Supplier Address</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" placeholder="" name="address"
+                                            value="" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-sm-2 col-form-label">Supplier Status</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" type="text" placeholder="" name="status"
+                                            value="" required>
+                                    </div>
+                                    <div class="row mb-3 float-right">
+                                        <button class="col-sm-2 btn btn-info " type="submit">Insert
+                                        </button>
+                                    </div>
+                                </div>
+
+
 
                             </form>
 
@@ -81,16 +69,4 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#images').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result); //attr=attribute
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-        });
-    </script>
 @endsection
