@@ -7,6 +7,7 @@ use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\Home\ContactController;
+use App\Http\Controllers\Pos\CustomerController;
 use App\Http\Controllers\Pos\SupplierController;
 use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\HomeSliderController;
@@ -30,10 +31,10 @@ use App\Http\Controllers\Home\BlogCategoryController;
 //     return view('frontend.index');
 // })->name('home');
 /*
-|--------------------------------------------------------------------------|
-|                            Admin  All Routes                             |
-|--------------------------------------------------------------------------|
-*/
+        |--------------------------------------------------------------------------|
+        |                            Admin  All Routes                             |
+        |--------------------------------------------------------------------------|
+        */
 
 Route::middleware(['auth'])->group(function () {
 
@@ -48,23 +49,56 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store/profile', 'store_profile')->name('store.profile');
     });
     // });
+
+    /*
+        |--------------------------------------------------------------------------|
+        |                            Supplier All Routes                             |
+        |--------------------------------------------------------------------------|
+        */
     Route::group(['prefix' => 'suppliers', 'as' => 'supplier.'], function () {
 
         Route::controller(SupplierController::class)->group(function () {
-            Route::get('/all', 'supplierView')->name('view');
+            Route::get('/view', 'supplierView')->name('view');
             Route::get('/add', 'supplierAdd')->name('add');
             Route::post('/store', 'supplierStore')->name('store');
-            Route::get('/edit', 'supplierEdit')->name('edit');
+            Route::get('/edit/{id}', 'supplierEdit')->name('edit');
+            Route::post('/update', 'supplierUpdate')->name('update');
             Route::get('/delete/{id}', 'supplierDelete')->name('delete');
         });
     });
+
+    /*
+        |--------------------------------------------------------------------------|
+        |                            Customer All Routes                             |
+        |--------------------------------------------------------------------------|
+        */
+    Route::group(['prefix' => 'customers', 'as' => 'customer.'], function () {
+
+        Route::controller(CustomerController::class)->group(function () {
+            Route::get('/view', 'customerView')->name('view');
+            Route::get('/add', 'customerAdd')->name('add');
+            Route::post('/store', 'customerStore')->name('store');
+            Route::get('/edit/{id}', 'customerEdit')->name('edit');
+            Route::post('/update', 'customerUpdate')->name('update');
+            Route::get('/delete/{id}', 'customerDelete')->name('delete');
+        });
+    });
+
+    /*
+            |--------------------------------------------------------------------------|
+            |                            Unit All Routes                             |
+            |--------------------------------------------------------------------------|
+            */
 });
 
+
+
+
 /*
-|--------------------------------------------------------------------------|
-|                             Dashboard All Routes                         |
-|--------------------------------------------------------------------------|
-*/
+        |--------------------------------------------------------------------------|
+        |                             Dashboard All Routes                         |
+        |--------------------------------------------------------------------------|
+        */
 
 Route::get('/dashboard', function () {
     return view('admin.index');

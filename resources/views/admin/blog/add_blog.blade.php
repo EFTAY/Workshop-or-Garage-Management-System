@@ -30,13 +30,9 @@
                                             @foreach ($category as $cat)
                                                 <option value="{{ $cat->id }}">{{ $cat->blog_category }}</option>
                                             @endforeach
-
-
                                         </select>
-
                                     </div>
                                 </div>
-
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-2 col-form-label">Blog Title</label>
                                     <div class="col-sm-10">

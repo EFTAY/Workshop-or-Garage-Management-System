@@ -36,7 +36,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a href="{{ route('supplier.add') }}" class="btn btn-dark btn-rounded waves-effect waves-light"
+                                style="float: right;"> Add Supplier</a><br>
                             <h4 class="card-title">Supplier All Data</h4>
 
                             <table id="complex-header-datatable" class="table dt-responsive nowrap w-100">
@@ -47,27 +48,31 @@
                                         <th>Mobile Number</th>
                                         <th>Email</th>
                                         <th>Address</th>
-                                        <th>Statu</th>
-                                        <th>C</th>
-                                        <th>U</th>
+                                        <th>Who Create</th>
+                                        <th>Who Update</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $i = 1;
-                                    @endphp
-                                    @foreach ($suppliers as $item)
+
+                                    @foreach ($supplier as $key => $item)
                                         <tr>
-                                            <td>{{ $i++ }}</td>
+
+                                            <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->mobile_no }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->address }}</td>
-                                            <td>{{ $item->status }}</td>
-                                            <td>{{ $item->created_at }}</td>
-                                            <td>{{ $item->updated_at }}</td>
-                                            <td>
+                                            <td>{{ $item->created_by }}</td>
+                                            <td>{{ $item->updated_by }}</td>
+                                            @if ($item->status == 1)
+                                                <td><span class="badge bg-success">Active</span></td>
+                                            @else
+                                                <td><span class="badge bg-danger">Inactive</span></td>
+                                            @endif
+
+                                            <td style="background-color:rgb(116, 132, 142)">
                                                 <div class="col-sm-3"><a href="{{ route('supplier.edit', $item->id) }}"
                                                         class="btn sm">
                                                         <i class="fas fa-edit" style="color: rgb(206, 193, 5)"></i> </a>
@@ -76,11 +81,10 @@
                                                         id="delete" class="btn sm">
                                                         <i class="fas fa-trash-alt" style="color: red"></i></a></div>
                                                 <div class="col-sm-3"></div>
-
-
                                             </td>
                                         </tr>
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div>
