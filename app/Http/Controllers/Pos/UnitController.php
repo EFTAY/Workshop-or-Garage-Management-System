@@ -31,15 +31,19 @@ class UnitController extends Controller
                 'message' => 'Unit Added Successfully',
                 'alert-type' => 'success'
             );
-            return redirect()->back()->with('success', 'Unit Created Successfully');
+            return redirect()->back()->with($notification);
         } catch (\Throwable $th) {
             throw $th;
         }
     }
     public function unitEdit($id)
     {
-        $unit = Unit::find($id);
-        return view('admin.unit.edit', compact('unit'));
+        try {
+            $unit = Unit::find($id);
+            return view('admin.unit.edit', compact('unit'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     public function unitUpdate(Request $request)
     {
@@ -68,13 +72,21 @@ class UnitController extends Controller
     }
     public function unitDelete($id)
     {
-        $unit = Unit::find($id);
-        $unit->delete();
-        return back()->with('success', 'Unit Deleted Successfully');
+        try {
+            $unit = Unit::find($id);
+            $unit->delete();
+            return back()->with('success', 'Unit Deleted Successfully');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     public function unitView()
     {
-        $units = Unit::all();
-        return view('admin.unit.view', compact('units'));
+        try {
+            $units = Unit::all();
+            return view('admin.unit.view', compact('units'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

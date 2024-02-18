@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label" for="">Status</label>
                                     <div class="form-group col-sm-10">
                                         <select class="selectpicker form-control " data-style="btn-outline-secondary btn-lg"
@@ -39,7 +39,7 @@
                                         </select>
                                     </div>
 
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12">
                                     <button class="btn btn-info btn-rounded waves-effect waves-light" style="float: right;"
                                         type="submit">Submit

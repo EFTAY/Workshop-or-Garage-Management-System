@@ -8,24 +8,24 @@
                     <div class="card">
                         <div class="card-body ">
 
-                            <h4 class="text-center">Edit Unit Page</h4>
+                            <h4 class="text-center">Edit Category Page</h4>
                             <hr>
-                            <form id="myForm" method="post" action="{{ route('unit.update') }}"
+                            <form id="myForm" method="post" action="{{ route('category.update') }}"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $unit->id }}">
+                                <input type="hidden" name="id" value="{{ $category->id }}">
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
                                         <h4 class="card-title">
-                                            Unit Data All</h4>
+                                            Category Data All</h4>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
 
-                                    <label for="" class="col-sm-2 col-form-label">Unit Name</label>
+                                    <label for="" class="col-sm-2 col-form-label">Category Name</label>
                                     <div class="form-group col-sm-10">
-                                        <input class="form-control" type="text" placeholder="" name="unit_name"
-                                            value="{{ $unit->unit_name }}">
+                                        <input class="form-control" type="text" placeholder="" name="name"
+                                            value="{{ $category->name }}">
                                     </div>
                                 </div>
 
@@ -34,9 +34,9 @@
                                     <div class="form-group col-sm-10">
                                         <select class="selectpicker form-control " data-style="btn-outline-secondary btn-lg"
                                             title="Not Chosen" name="status">
-                                            <option value="1" {{ $unit->status == 1 ? 'Selected' : '' }}>Active
+                                            <option value="1" {{ $category->status == 1 ? 'Selected' : '' }}>Active
                                             </option>
-                                            <option value="0" {{ $unit->status == 0 ? 'Selected' : '' }}>Inactive
+                                            <option value="0" {{ $category->status == 0 ? 'Selected' : '' }}>Inactive
                                             </option>
                                         </select>
                                     </div>
@@ -59,14 +59,14 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    unit_name: {
+                    name: {
                         required: true,
                     },
 
                 },
                 messages: {
-                    unit_name: {
-                        required: "Kindly Enter Unit Name",
+                    name: {
+                        required: "Kindly Enter Category Name",
                     },
 
                 },
