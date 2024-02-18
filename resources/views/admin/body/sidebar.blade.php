@@ -36,30 +36,29 @@
                         <span>Manage Suppliers</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('supplier.view') }}">All Supplier</a></li>
+                        <li><a href="{{ route('supplier.view') }}">View Suppliers</a></li>
                         <li><a href="{{ route('supplier.add') }}">Add Supplier</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-mail-send-line"></i>
-                        <span>About Page Setup</span>
+                        <span>Manage Customers</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="">About Page</a></li>
-                        <li><a href="">About Multi image</a></li>
-                        <li><a href="">All Multi image</a></li>
+                        <li><a href="{{ route('customer.view') }}">View Customers</a></li>
+                        <li><a href="{{ route('customer.add') }}">Add Customer</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-profile-line"></i>
-                        <span>Portfolio Page Setup</span>
+                        <span>Manage Unit</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                        <li><a href="">All Portfolio</a></li>
-                        <li><a href="">Add Portfolio</a></li>
+                        <li><a href="{{ route('unit.view') }}">View Unit</a></li>
+                        <li><a href="{{ route('unit.add') }}">Add Unit</a></li>
                     </ul>
                 </li>
 

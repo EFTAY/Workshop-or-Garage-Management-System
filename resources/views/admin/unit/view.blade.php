@@ -1,7 +1,5 @@
 @extends('admin.admin_master')
 @section('admin_content')
-    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js') }}"></script>
-
     <!-- DataTables -->
     <link href="{{ asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
@@ -28,7 +26,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Customer Page</h4>
+                        <h4 class="mb-sm-0">Unit Page</h4>
                     </div>
                 </div>
             </div>
@@ -38,46 +36,42 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('customer.add') }}" class="btn btn-dark btn-rounded waves-effect waves-light"
-                                style="float: right;"> Add Customer</a><br>
-                            <h4 class="card-title">Customer All Data</h4>
+                            <a href="{{ route('unit.add') }}" class="btn btn-dark btn-rounded waves-effect waves-light"
+                                style="float: right;"> Add Unit</a><br>
+                            <h4 class="card-title">Unit All Data</h4>
 
                             <table id="complex-header-datatable" class="table dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Customer Image</th>
-                                        <th>Customer Name</th>
-                                        <th>Mobile Number</th>
-                                        <th>Email</th>
-                                        <th>Address</th>
+                                        <th>Unit Name</th>
                                         <th>Who Create</th>
                                         <th>Who Update</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($customer as $key => $item)
+                                    @foreach ($units as $key => $item)
                                         <tr>
 
                                             <td>{{ $key + 1 }}</td>
-                                            <td><img id="showImage"
-                                                    src="{{ !empty($item->c_image) ? asset($item->c_image) : asset('upload/no_image.jpg') }}"
-                                                    style="width:60px; height:50px" alt=""></td>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->mobile_no }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->address }}</td>
+                                            <td>{{ $item->unit_name }}</td>
                                             <td>{{ $item->created_by }}</td>
                                             <td>{{ $item->updated_by }}</td>
+                                            @if ($item->status == 1)
+                                                <td><span class="badge bg-success">Active</span></td>
+                                            @else
+                                                <td><span class="badge bg-danger">Inactive</span></td>
+                                            @endif
 
                                             <td style="background-color:rgb(116, 132, 142)">
-                                                <div class="col-sm-3"><a href="{{ route('customer.edit', $item->id) }}"
+                                                <div class="col-sm-3"><a href="{{ route('unit.edit', $item->id) }}"
                                                         class="btn sm">
                                                         <i class="fas fa-edit" style="color: rgb(206, 193, 5)"></i> </a>
                                                 </div>
-                                                <div class="col-sm-3"><a href="{{ route('customer.delete', $item->id) }}"
+                                                <div class="col-sm-3"><a href="{{ route('unit.delete', $item->id) }}"
                                                         id="delete" class="btn sm">
                                                         <i class="fas fa-trash-alt" style="color: red"></i></a></div>
                                                 <div class="col-sm-3"></div>
@@ -94,17 +88,7 @@
         </div>
     </div>
 
-    {{-- <script type="text/javascript">
-        $(document).ready(function() {
-            $('#image').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result); //attr=attribute
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-        });
-    </script> --}}
+
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
@@ -112,8 +96,6 @@
     <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
-
-
 
 
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>

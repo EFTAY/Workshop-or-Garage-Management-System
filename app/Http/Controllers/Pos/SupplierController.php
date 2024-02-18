@@ -13,10 +13,19 @@ class SupplierController extends Controller
 {
     public function supplierView()
     {
+        try {
+            $supplier = Supplier::all();
 
-        $supplier = Supplier::all();
+            return view('admin.supplier.view', compact('supplier'));
+        } catch (\Throwable $th) {
+            // Log the error or handle it as needed
+            $notification = [
+                'message' => 'Error fetching suppliers',
+                'alert-type' => 'error'
+            ];
 
-        return view('admin.supplier.view', compact('supplier'));
+            return redirect()->back()->with($notification);
+        }
     }
     public function supplierAdd()
     {

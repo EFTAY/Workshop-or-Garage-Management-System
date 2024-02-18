@@ -3,6 +3,7 @@
 use App\Models\Footer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Pos\UnitController;
 use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\FooterController;
@@ -86,9 +87,21 @@ Route::middleware(['auth'])->group(function () {
 
     /*
             |--------------------------------------------------------------------------|
-            |                            Unit All Routes                             |
+            |                            Unit All Routes                               |
             |--------------------------------------------------------------------------|
             */
+
+    Route::group(['prefix' => 'units', 'as' => 'unit.'], function () {
+
+        Route::controller(UnitController::class)->group(function () {
+            Route::get('/view', 'unitView')->name('view');
+            Route::get('/add', 'unitAdd')->name('add');
+            Route::post('/store', 'unitStore')->name('store');
+            Route::get('/edit/{id}', 'unitEdit')->name('edit');
+            Route::post('/update', 'unitUpdate')->name('update');
+            Route::get('/delete/{id}', 'unitDelete')->name('delete');
+        });
+    });
 });
 
 
