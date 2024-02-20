@@ -7,6 +7,7 @@ use App\Http\Controllers\Pos\UnitController;
 use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\Pos\ProductController;
 use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Pos\CategoryController;
 use App\Http\Controllers\Pos\CustomerController;
@@ -117,6 +118,23 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', 'categoryEdit')->name('edit');
             Route::post('/update', 'categoryUpdate')->name('update');
             Route::get('/delete/{id}', 'categoryDelete')->name('delete');
+        });
+    });
+
+    /*
+            |--------------------------------------------------------------------------|
+            |                            Product All Routes                            |
+            |--------------------------------------------------------------------------|
+            */
+    Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
+
+        Route::controller(ProductController::class)->group(function () {
+            Route::get('/view', 'productView')->name('view');
+            Route::get('/add', 'productAdd')->name('add');
+            Route::post('/store', 'productStore')->name('store');
+            Route::get('/edit/{id}', 'productEdit')->name('edit');
+            Route::post('/update', 'productUpdate')->name('update');
+            Route::get('/delete/{id}', 'productDelete')->name('delete');
         });
     });
 });
