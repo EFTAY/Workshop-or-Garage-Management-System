@@ -12,7 +12,11 @@ class UnitController extends Controller
 {
     public function unitAdd()
     {
-        return view('admin.unit.add');
+        try {
+            return view('admin.unit.add');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     public function unitStore(Request $request)
     {
@@ -22,7 +26,7 @@ class UnitController extends Controller
             ]);
             Unit::create([
                 'unit_name' => $request->unit_name,
-                'status' => request()->status,
+                // 'status' => request()->status,
                 'created_by' => Auth::user()->name,
                 'created_at' => Carbon::now()
             ]);
@@ -57,7 +61,7 @@ class UnitController extends Controller
 
             Unit::where('id', $unit)->update([
                 'unit_name' => $request->unit_name,
-                'status' => request()->status,
+                // 'status' => request()->status,
                 'updated_by' => Auth::user()->name,
                 'updated_at' => Carbon::now(),
             ]);

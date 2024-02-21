@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-body ">
 
-                            <h4 class="text-center">Add Product Page</h4>
+                            <h4 class="text-center">Edit Product Page</h4>
                             <hr>
                             <form id="myForm" method="post" action="{{ route('product.update') }}"
                                 enctype="multipart/form-data">

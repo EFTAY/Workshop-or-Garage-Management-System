@@ -50,6 +50,8 @@ class ProductController extends Controller
     public function productView()
     {
         try {
+            // return Request()->all();
+
             $products = Product::all();
             return view('admin.product.view', compact('products'));
         } catch (\Throwable $th) {

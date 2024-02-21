@@ -61,11 +61,13 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item['supplier']['name'] }}</td> {{-- Product Model a ['function']['name'] ebhabe data fatch korse --}}
-                                            <td>{{ $item['unit']['unit_name'] }}</td>
-                                            <td>{{ $item['category']['name'] }}</td>
+                                            {{-- <td>{{ $item->supplier_id }}</td> --}}
+                                            <td>{{ $item['supplier']['name'] ?? 'N/A' }}</td>
+                                            {{-- <td>{{ $item->unit_id }}</td> --}}
+                                            <td>{{ $item['unit']['unit_name'] ?? 'N/A' }}</td>
+                                            {{-- <td>{{ $item->category_id }}</td> --}}
+                                            <td>{{ $item['category']['name'] ?? 'N/A' }}</td>
                                             <td>{{ $item->quantity }}</td>
-                                            <td>{{ $item->status }}</td>
                                             {{-- 
                                                 <td>{{ $item->created_by }}</td>
                                                 <td>{{ $item->updated_by }}</td>

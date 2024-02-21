@@ -31,11 +31,12 @@ class SupplierController extends Controller
     {
         return view('admin.supplier.add');
     }
-    public function supplierStore(Request $request, $id)
+    // public function supplierStore(Request $request,$id)
+    public function supplierStore(Request $request)
     {
         try {
             // $createdByName = User::find($supplier->created_by)->name;
-            $supplier = Supplier::create([
+            Supplier::create([
                 'name' => request()->name,
                 'email' => request()->email,
                 'mobile_no' => request()->mobile_no,
@@ -49,7 +50,7 @@ class SupplierController extends Controller
                 'alert-type' => 'success'
             );
             // return redirect()->route('supplier.view')->with($notification);
-            return redirect()->back()->with($notification);
+            return redirect()->route('supplier.view')->with($notification);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -85,7 +86,7 @@ class SupplierController extends Controller
 
             // Redirect back with the notification
             // return redirect()->route('supplier.view')->with($notification);
-            return redirect()->back()->with($notification);
+            return redirect()->route('supplier.view')->with($notification);
         } catch (\Throwable $th) {
             // Handle the exception as needed (e.g., log the error)
             $notification = [
