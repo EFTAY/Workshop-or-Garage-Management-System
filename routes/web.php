@@ -7,10 +7,12 @@ use App\Http\Controllers\Pos\UnitController;
 use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\Pos\DefaultController;
 use App\Http\Controllers\Pos\ProductController;
 use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Pos\CategoryController;
 use App\Http\Controllers\Pos\CustomerController;
+use App\Http\Controllers\Pos\PurchaseController;
 use App\Http\Controllers\Pos\SupplierController;
 use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\HomeSliderController;
@@ -136,6 +138,31 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/update', 'productUpdate')->name('update');
             Route::get('/delete/{id}', 'productDelete')->name('delete');
         });
+    });
+
+    /*
+            |--------------------------------------------------------------------------|
+            |                            Purchase All Routes                            |
+            |--------------------------------------------------------------------------|
+            */
+    Route::group(['prefix' => 'purchases', 'as' => 'purchase.'], function () {
+
+        Route::controller(PurchaseController::class)->group(function () {
+            Route::get('/view', 'purchaseView')->name('view');
+            Route::get('/add', 'purchaseAdd')->name('add');
+            Route::post('/store', 'purchaseStore')->name('store');
+            Route::get('/edit/{id}', 'purchaseEdit')->name('edit');
+            Route::post('/update', 'purchaseUpdate')->name('update');
+            Route::get('/delete/{id}', 'purchaseDelete')->name('delete');
+        });
+    });
+    /*
+            |--------------------------------------------------------------------------|
+            |                            Default All Routes                            |
+            |--------------------------------------------------------------------------|
+            */
+    Route::controller(DefaultController::class)->group(function () {
+        Route::get('/get-category', 'GetCategory')->name('get.category');
     });
 });
 
