@@ -21,4 +21,14 @@ class DefaultController extends Controller
             throw $th;
         }
     }
+    public function GetProduct(Request $request)
+    {
+        try {
+            $category_id = $request->category_id;
+            $all_product = Product::where('category_id', $category_id)->get();
+            return response()->json($all_product);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

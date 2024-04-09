@@ -22,6 +22,8 @@
 
 <!-- Eftay Alert-->
 
+
+
 <!-- jquery.vectormap css -->
 <link href="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}"
     rel="stylesheet" type="text/css" />

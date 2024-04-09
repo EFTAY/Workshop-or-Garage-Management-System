@@ -96,6 +96,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/notify.js/3.0.0/notify.min.js') }}"></script>
+
     <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
 
     {{-- Input Tags --}}
