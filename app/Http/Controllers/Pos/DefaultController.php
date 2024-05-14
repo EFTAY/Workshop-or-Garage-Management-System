@@ -15,7 +15,8 @@ class DefaultController extends Controller
         try {
             $supplier_id = $request->supplier_id;
             $all_category = Product::with(['category'])->select('category_id')->where('supplier_id', $supplier_id)->groupBy('category_id')->get();
-
+            #for check
+            // dd($all_category); 
             return response()->json($all_category);
         } catch (\Throwable $th) {
             throw $th;

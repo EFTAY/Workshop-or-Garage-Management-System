@@ -1,6 +1,8 @@
 @extends('admin.admin_master')
 @section('admin_content')
     <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.min.js"></script>
+
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
@@ -10,9 +12,7 @@
 
                             <h4 class="text-center">Add Purchase Page</h4>
                             <hr>
-                            {{-- <form id="myForm" method="post" action="{{ route('purchase.store') }}"
-                                enctype="multipart/form-data">
-                                @csrf --}}
+
                             <div class="row">
 
                                 <div class="col-md-4">
@@ -72,9 +72,8 @@
                                             More</i>
                                     </div>
                                 </div>
-
-
                             </div>
+
                         </div>
                         {{-- --------------------------------------- --}}
 
@@ -109,16 +108,19 @@
                                         </tr>
                                     </thead>
                                     <tbody id="addRow" class="addRow">
+
+
+                                    </tbody>
+                                    <tbody>
                                         <tr>
-                                            <td colspan="5">
+                                            <td colspan="5"></td>
                                             <td>
                                                 <input type="text" name="estimated_amount" value="0"
                                                     id="estimated_amount" class="form-control estimated_amount" readonly
                                                     style="background-color:#ddd">
                                             </td>
-                                            </td>
-                                        </tr>
 
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <br>
@@ -135,29 +137,37 @@
     </div>
 
 
-    <script type="text/x-handlebars-tamlate" id="document-template">
+    {{-- ajax start --}}
+
+    <script type="text/x-handlebars-template" id="document-template">
         <tr class="delete_add_more_item" id="delete_add_more_item">
+
             <input type="hidden" name="data[]" value="@{{ data }}">
-            <input type="hidden" name="parchase_no[]" value="@{{ parchase_no }}">
+            <input type="hidden" name="purchase_no[]" value="@{{ purchase_no }}">
             <input type="hidden" name="supplier_id[]" value="@{{ supplier_id }}">
-            <td type="hidden" name="category_id[]" value="@{{ category_name }}">@{{ category_id }}</td>
-            <td type="hidden" name="product_id[]" value="@{{ product_name }}">@{{ product_id }}</td>
-            <td type="number" min="1" class="form-control buying_quantity text-right" name="buying_quantity[]"
-                value=""></td>
-            <td type="number" min="1" class="form-control unit_price text-right" name="unit_price[]"
-                value=""></td>
-            <td type="text" min="1" class="form-control" name="description[]"></td>
-            <td type="number" min="1" class="form-control buying_price text-right" name="buying_price[]"
+            <td type="hidden" name="category_id[]" value="@{{ category_name }}">@{{ category_name }}</td>
+            <td type="hidden" name="product_id[]" value="@{{ product_name }}">@{{ product_name }}</td>
+            <td> 
+                <input type="number" min="1" class="form-control buying_quantity text-right" name="buying_quantity[]"
+                value="">
+            </td>
+            <td> <input type="number" min="1" class="form-control unit_price text-right" name="unit_price[]"
+                value="">
+            </td>
+            
+            <td> <input type="text" class="form-control" name="description[]"></td>
+            <td> <input type="number" min="1" class="form-control buying_price text-right" name="buying_price[]"
                 value="0" readonly>
             </td>
             <td><i class="btn btn-danger btn-sm fas fa-window-close removeeventmore"></i></td>
         </tr>
     </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
-            $(document).on("click", "#addevenmore", function() {
-                var data = $('#data').val();
-                var parchase_no = $('#parchase_no').val();
+            $(document).on("click", ".addevenmore", function() {
+                var date = $('#date').val();
+                var purchase_no = $('#purchase_no').val();
                 var supplier_id = $('#supplier_id').val();
                 var category_id = $('#category_id').val();
                 var category_name = $('#category_id').find('option:selected').text();
@@ -198,23 +208,48 @@
                     });
                     return false;
                 }
+
                 var source = $("#document-template").html();
                 var template = Handlebars.compile(source);
                 var data = {
-                    data: data,
-                    parchase_no: parchase_no,
+                    date: date,
+                    purchase_no: purchase_no,
                     supplier_id: supplier_id,
                     category_id: category_id,
                     category_name: category_name,
                     product_id: product_id,
                     product_name: product_name
                 };
+                var html = template(data);
+                $('#addRow').append(html);
             });
-            var html = template(data);
-            $('#addRow').append(html);
+            $(document).on("click", ".removeeventmore", function(event) {
+                $(this).closest(".delete_add_more_item").remove();
+                totalAmount();
 
+            });
+            $(document).on('keyup click', '.buying_quantity, .unit_price', function() {
+                var buying_quantity = $(this).closest("tr").find("input.buying_quantity").val();
+                var unit_price = $(this).closest("tr").find("input.unit_price").val();
+                var total = buying_quantity * unit_price;
+                $(this).closest("tr").find("input.buying_price").val(total);
+                totalAmount();
+            });
+
+            function totalAmount() {
+                var sum = 0;
+                $(".buying_price").each(function() {
+                    var value = $(this).val();
+                    if (!isNaN(value) && value.length != 0) {
+                        sum += parseFloat(value);
+                    }
+                });
+                $('#estimated_amount').val(sum);
+            }
         });
     </script>
+
+
     <script type="text/javascript">
         $(function() {
             $(document).on('change', '#supplier_id', function() {
