@@ -74,9 +74,9 @@
                                                 <td>{{ $item->updated_by }}</td>
                                              --}}
                                             @if ($item->status == 1)
-                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td><span class="badge bg-success">Approved</span></td>
                                             @else
-                                                <td><span class="badge bg-danger">Inactive</span></td>
+                                                <td><span class="badge bg-danger">Peending</span></td>
                                             @endif
 
                                             <td style="background-color:rgb(116, 132, 142)">

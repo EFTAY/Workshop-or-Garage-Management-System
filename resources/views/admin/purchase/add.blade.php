@@ -18,8 +18,7 @@
                                 <div class="col-md-4">
                                     <div class="md-3">
                                         <label for="example-text-input" class="form-label">Date</label>
-                                        <input class="form-control example-date-input" type="date" name="date"
-                                            id="date">
+                                        <input class="form-control" type="date" name="date" id="date">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -78,7 +77,7 @@
                         {{-- --------------------------------------- --}}
 
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ route('purchase.store') }}" method="post">
                                 @csrf
                                 <table class="table-sm table-bordered" width="100%" style="border-color: #ddd">
                                     <thead>
@@ -142,11 +141,11 @@
     <script type="text/x-handlebars-template" id="document-template">
         <tr class="delete_add_more_item" id="delete_add_more_item">
 
-            <input type="hidden" name="data[]" value="@{{ data }}">
+            <input type="hidden" name="date[]" value="@{{ date }}">
             <input type="hidden" name="purchase_no[]" value="@{{ purchase_no }}">
             <input type="hidden" name="supplier_id[]" value="@{{ supplier_id }}">
-            <td type="hidden" name="category_id[]" value="@{{ category_name }}">@{{ category_name }}</td>
-            <td type="hidden" name="product_id[]" value="@{{ product_name }}">@{{ product_name }}</td>
+            <td> <input type="hidden" name="category_id[]" value="@{{ category_id }}">@{{ category_name }}</td>
+            <td> <input type="hidden" name="product_id[]" value="@{{ product_id }}">@{{ product_name }}</td>
             <td> 
                 <input type="number" min="1" class="form-control buying_quantity text-right" name="buying_quantity[]"
                 value="">
