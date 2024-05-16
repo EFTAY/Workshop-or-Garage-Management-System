@@ -49,7 +49,7 @@
                                         <th>Supplier</th>
                                         <th>Category</th>
                                         <th>Product</th>
-                                        <th>Description</th>
+                                        {{-- <th>Description</th> --}}
                                         <th>Quantity</th>
                                         <th>Price</th>
                                         <th>Status</th>
@@ -68,7 +68,7 @@
                                             <td>{{ $item['supplier']['name'] ?? 'N/A' }}</td>
                                             <td>{{ $item['category']['name'] ?? 'N/A' }}</td>
                                             <td>{{ $item['product']['name'] ?? 'N/A' }}</td>
-                                            <td>{{ $item->description }}</td>
+                                            {{-- <td>{{ $item->description }}</td> --}}
                                             <td>{{ $item->buying_quantity }}</td>
                                             <td>{{ $item->buying_price }}</td>
 
@@ -80,9 +80,9 @@
 
                                             <td>
                                                 @if ($item->status == '0')
-                                                    <a href="{{ route('purchase.delete', $item->id) }}"
-                                                        title="Delete Data?" id="delete" class="btn btn-danger"><i
-                                                            class="fas fa-trash-alt"></i></a>
+                                                    <a href="{{ route('purchase.approve', $item->id) }}" id="approvedBtn"
+                                                        class="btn btn-primary" title="Approved"><i
+                                                            class="fas fa-check-circle"></i></a>
                                                 @endif
 
                                             </td>

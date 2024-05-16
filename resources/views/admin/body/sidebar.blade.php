@@ -91,7 +91,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('purchase.view') }}">View Purchase</a></li>
-                        <li><a href="{{ route('purchase.add') }}">Add Purchase</a></li>
+                        {{-- <li><a href="{{ route('purchase.add') }}">Add Purchase</a></li> --}}
+                        <li><a href="{{ route('purchase.pending') }}">Approval Purchase</a></li>
                     </ul>
                 </li>
 

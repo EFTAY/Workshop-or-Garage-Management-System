@@ -106,4 +106,5 @@
     {{-- Input Tags --}}
     <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
-    {{-- end input tags --}}
+    {{-- Bootstrap Bundle --}}
+    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -57,6 +57,16 @@ Route::middleware(['auth'])->group(function () {
 
     /*
         |--------------------------------------------------------------------------|
+        |                             Dashboard All Routes                         |
+        |--------------------------------------------------------------------------|
+        */
+
+    // Route::get('/dashboard', function () {
+    //     return view('admin.index');
+    // })->name('dashboard');
+
+    /*
+        |--------------------------------------------------------------------------|
         |                            Supplier All Routes                             |
         |--------------------------------------------------------------------------|
         */
@@ -151,9 +161,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/view', 'purchaseView')->name('view');
             Route::get('/add', 'purchaseAdd')->name('add');
             Route::post('/store', 'purchaseStore')->name('store');
-            Route::get('/edit/{id}', 'purchaseEdit')->name('edit');
-            Route::post('/update', 'purchaseUpdate')->name('update');
+            // Route::get('/edit/{id}', 'purchaseEdit')->name('edit');
+            // Route::post('/update', 'purchaseUpdate')->name('update');
             Route::get('/delete/{id}', 'purchaseDelete')->name('delete');
+            Route::get('/pending', 'purchasePending')->name('pending');
+            Route::get('/approve/{id}', 'purchaseApprove')->name('approve');
         });
     });
     /*

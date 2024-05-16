@@ -66,14 +66,14 @@
                                                 <td><span class="badge bg-danger">Inactive</span></td>
                                             @endif --}}
 
-                                            <td style="background-color:rgb(116, 132, 142)">
+                                            <td>
                                                 <div class="col-sm-3"><a href="{{ route('category.edit', $item->id) }}"
-                                                        class="btn sm">
-                                                        <i class="fas fa-edit" style="color: rgb(206, 193, 5)"></i> </a>
+                                                        class="btn btn-warning">
+                                                        <i class="fas fa-edit"></i> </a>
                                                 </div>
                                                 <div class="col-sm-3"><a href="{{ route('category.delete', $item->id) }}"
-                                                        id="delete" class="btn sm">
-                                                        <i class="fas fa-trash-alt" style="color: red"></i></a></div>
+                                                        id="delete" class="btn btn-danger">
+                                                        <i class="fas fa-trash-alt"></i></a></div>
                                                 <div class="col-sm-3"></div>
                                             </td>
                                         </tr>
@@ -92,7 +92,6 @@
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
-    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>

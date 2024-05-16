@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pos;
 
 use App\Models\Unit;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\Purchase;
 use App\Models\Supplier;
@@ -67,6 +68,65 @@ class PurchaseController extends Controller
                 'message' => 'Data Save Successfully',
                 'alert-type' => 'success'
             );
+            return redirect()->route('purchase.view')->with($notification);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    //purchaseDelete
+
+    public function purchaseDelete($id)
+    {
+        try {
+            $purchase = Purchase::where('id', $id)->first();
+            if ($purchase) {
+                $purchase->delete();
+                $notification = array(
+                    'message' => 'Purchase Item Deleted Successfully',
+                    'alert-type' => 'success'
+                );
+            } else {
+                $notification = array(
+                    'message' => 'Purchase Item Not Found',
+                    'alert-type' => 'error'
+                );
+            }
+            return redirect()->back()->with($notification);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    //purchasePending
+    public function purchasePending()
+    {
+        try {
+            $purchase_data = Purchase::orderBy('date', 'DESC')->orderBy('id', 'DESC')->where('status', '0')->get();
+            return view('admin.purchase.pending', compact('purchase_data'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    //purchaseApprove
+    public function purchaseApprove($id)
+    {
+        try {
+            // $purchase = Purchase::where('id', $id)->first();
+            $purchase = Purchase::find($id);
+            $product = Product::where('id', $purchase->product_id)->first();
+            $purchase_qty = ((float)($product->quantity)) + ((float)($purchase->buying_quantity));
+            $product->quantity = $purchase_qty;
+            if ($product->save()) {
+                Purchase::where('id', $id)->update(['status' => '1']);
+                $notification = array(
+                    'message' => 'Status Approved Successfully',
+                    'alert-type' => 'success'
+                );
+            } else {
+                $notification = array(
+                    'message' => 'Status Not Found',
+                    'alert-type' => 'error'
+                );
+            }
             return redirect()->route('purchase.view')->with($notification);
         } catch (\Throwable $th) {
             throw $th;

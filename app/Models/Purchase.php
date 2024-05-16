@@ -35,4 +35,12 @@ class Purchase extends Model
             throw $th;
         }
     }
+    public function product()
+    {
+        try {
+            return $this->belongsTo(Product::class, 'product_id', 'id');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
